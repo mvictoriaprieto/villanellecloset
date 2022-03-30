@@ -1,22 +1,24 @@
-import React,{useState} from "react";
+import React,{ useState } from "react";
+import Button from '@mui/material/Button';
 
-
-const ItemCount = ({stock}) => {
-    const [count , setCount] = useState (1)
-    const onAdd = () =>{
-        if(count < stock){
-            setCount (count + 1)
-        }
-       
-    } 
-
+const ItemCount = ({stock, initial, onAdd}) => {
+    const [count , setcount] = useState (initial);
+   
+   
+    const countProducts = (num) =>{
+        setcount (count + num);
+        
+    };
+  
     return(
-        <>
-         <button onClick={onAdd}> + </button>
+        <div>
+        <div className="countItemCart">
+         <button onClick={() => countProducts (-1)} disable={count === initial ? true : null}> - </button>
            <p>{count}</p>
-          <button> - </button>
-    </>
-    
-)}
-
-export default ItemCount;
+           <button onClick={() => countProducts (+1)} disable={count === stock ? true : null}> + </button>
+        </div>
+        <Button onClick={() => onAdd(count)} disable={stock === 0 ? true : null}>Add to cart</Button> 
+        </div>
+    );
+};
+export default ItemCount

@@ -4,14 +4,15 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar.js'
 
 
-import ListProducts from './components/ListProducts/ListProducts';
+import ItemListContainer from './components/ItemListContainer/Itemlistcontainer';
 
 
 function App() {
   return (
     <div className="App">
      <NavBar/>
-     <ListProducts/>
+     <ItemListContainer/>
+    
     </div>
   );
 }
