@@ -41,8 +41,8 @@ const ItemList = () => {
                     return (
                       <div key={product.id}>
                         <Item
-                          name={product.title}
-                          thumbnail={product.image}
+                          title={product.title}
+                          image={product.image}
                           price={product.price}
                           stock={product.stock}
                           size={product.size}
@@ -54,7 +54,7 @@ const ItemList = () => {
                 }
               </>
             ) : (
-              <p>Loading products...</p>
+              <p className="pLoading">Loading products...</p>
             ) 
           }
         </div>

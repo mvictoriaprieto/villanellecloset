@@ -12,9 +12,11 @@ const Item = ({title, image, price, id, size, stock}) => {
         <div className="card-item">
         <img className="image_card" src={image} alt= 'clothing'/>
             <h2 className="title_card">{title}</h2>
+            <div>
             <p>Size: {size}</p>
             <p>Price: $ {price}</p>
            <ItemCount stock={stock} onAdd={onAdd} initial={1} />
+           </div>
         </div>
     )
 }

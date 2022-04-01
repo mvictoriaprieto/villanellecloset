@@ -1,0 +1,14 @@
+.product-detail__img{
+    width:40%;
+    padding: 10px;
+}
+.product-detail{
+    display: flex;
+}
+article{
+    width: 70%;
+    margin:50px 70px;
+    background-color:rgb(127, 208, 255);
+
+}
+

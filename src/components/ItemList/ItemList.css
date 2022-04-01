@@ -1,3 +1,15 @@
 h2{
+    margin: 10px;
+}
+
+.product-list-container{
+
+     display:flex;
+     flex-direction: row;
+     align-items: center;
+}
+.pLoading{
     margin: 50px;
+    font-size: 2rem;
+    
 }

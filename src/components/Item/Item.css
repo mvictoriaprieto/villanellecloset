@@ -1,7 +1,13 @@
 .card-item{
     background-color:bisque;
-    width: 150px;
-    margin: 50px;
+    width:350px;
+    margin: 10px 30px;
     text-align:center;
 
+}
+.image_card{
+    width:70%;
+}
+.title_card{
+    padding:15px;
 }
