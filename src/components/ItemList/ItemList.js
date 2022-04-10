@@ -1,65 +1,75 @@
-import React, {
-    useEffect,
-    useState
-} from 'react';
-import Item from '../Item/Item';
-import {
-    productList
-} from '../../data/data';
-import './ItemList.css';
+import Card from '../Item/Item';
+import '../../styles/_ItemList.scss';
+import {productList} from '../../data/data.js'
+import { useEffect, useState } from 'react';
+import Grid from '@mui/material/Grid';
+import { useParams } from 'react-router-dom';
 
 
-const ItemList = () => {
-    const [products, setProducts] = useState([]);
 
-    const getProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(productList);
-        }, 2000);
 
-    });
+const CardList = ({children}) => {
+  
+    const { category } = useParams()
 
-    const getProductsFromDB = async () => {
-        try {
-            const result = await getProducts;
-            setProducts(result);
-        } catch (error) {
-            alert('No podemos mostrar los productos en este momento');
-        }
-    };
+    const [products, setProducts] = useState([])
 
-    useEffect(() => {
-        getProductsFromDB();
-    }, []);
+    const getProducts = () => {
+        return new Promise((resolve, reject) => {
+            return resolve(productList)
+        })
+    } 
 
-    return (
-        <div className="product-list-container">
-          { products.length ? (
-              <>
-                {products.map((product) => {
-                    
-                    return (
-                      <div key={product.id}>
-                        <Item
-                          title={product.title}
-                          image={product.image}
-                          price={product.price}
-                          stock={product.stock}
-                          size={product.size}
-                          id={product.id}
-                        />
-                      </div>
-                    );
-                  })
-                }
-              </>
-            ) : (
-              <p className="pLoading">Loading products...</p>
-            ) 
-          }
-        </div>
-      );
-    };
+    useEffect( () => {
+        setProducts([])
+        getProducts().then( (productos) => {
+            category ? filterProductByCategory(productos, category) : setProducts(productos)
+        })
+    }, [category])
+
+
+    const filterProductByCategory = (array , category) => {
+        return array.map( (product, i) => {
+            if(product.category === category) {
+               return setProducts(products => [...products, product]);
+            }
+            return null;
+        })
+    }
+return (
     
-    export default ItemList;
+      
+        
+          <>
+            {
+              products.map((product) => {
+                return (
+                            
+      
+                  <Grid item lg={4}>
+              
+                  <div key={product.id}>
+                    <Card
+                      name={product.name}
+                      thumbnail={product.thumbnail}
+                      talle={product.talle}
+                      price={product.price}
+                      stock={product.stock}
+                      id={product.id}
+                    />
+                  </div>
+                  </Grid>
+                                                   
+                  
+                );
+              })
+            }
+          </>
+            
     
+  );
+};
+
+export default CardList;
+
+

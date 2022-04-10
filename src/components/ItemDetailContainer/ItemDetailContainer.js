@@ -1,22 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { getProductById } from '../../helpers/getData';
-import ItemDetail from '../ItemDetail/ItemDetail';
-import './ItemDetailContainer.css';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
+import '../../styles/_ItemDetail.scss';
 
-const ItemDetailContainer = ({ id }) => {
-  const [product, setProduct] = useState(null);
+import ItemDetailCard from '../ItemDetailList/ItemDetailList';
 
-  useEffect(() => {
-   
-    getProductById(Number(id), setProduct);
-   
-  }, [id]);
-  
+const ItemDetailContainer = (props) => {
   return (
-    <section className="item-detail-container">
-      {product ? <ItemDetail item={product} /> : <p>Loading products...</p>}
-    </section>
+    <>
+      
+      
+      
+      <Container className = "itemDetailConteiner" maxWidth="xl">
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        >
+        <ItemDetailCard/>
+       
+        
+      </Grid>
+    </Container>
+        
+       
+        
+      
+      
+
+      
+
+      
+      
+  
+
+
+        
+      
+    
+    
+    
+      
+          </>
+
+          
   );
 };
 

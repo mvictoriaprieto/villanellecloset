@@ -1,28 +1,55 @@
-import React from 'react';
+import React,{useEffect, useState} from "react";
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import ItemCount from '../ItemCount/ItemCount';
-import './ItemDetail.css';
+import { Link } from 'react-router-dom';
 
-const ItemDetail = ({ item }) => {
-  const onAdd = (count) => {
-    alert(`You have added ${count} of this item to your cart`);
-  };
+const ItemDetailCard = ({ name, thumbnail, price, id, talle, stock, desc }) => {
+  const [contador, setContador] = useState(0);
+    const [mostrarItemCount, setMostrarItemCount] = useState(true);
+  const onAdd = (e, count) => {
+    if(!!e & contador<1){
+      setContador(count);
+  }
+}
+useEffect(()=>{
+  if(contador>0){
+      setMostrarItemCount(false);
+      console.log("el valor de contador es:", contador);
+  }
+},[contador])
 
 
   return (
-    <article className="product-detail">
-    <div className="img">
-      <img src={item.image} alt="" className="product-detail__img" />
+    <>
+     <Grid item lg={8}>
+      <div className ="imageDetailContainer">
+      <img src= {thumbnail} alt="Chotes" />
       </div>
-      <div className="product-detail__info">
-        <h2 className="title">{item.title}</h2>
-        <div className="info-grid">
-          <p>Price: ${item.price} </p>
-          <p>Size: {item.size}</p>
-        </div>
-        <ItemCount stock={item.stock} initial={1} onAdd={onAdd} className="item-count"/>
-      </div>
-    </article>
+      </Grid>
+           
+      <Grid item lg={3}>
+  
+          <h3>{name}</h3>
+          <p className = "detailDesc">{desc}</p>
+          <div className="Talle">Size: {talle} </div>
+          
+          <p className="precio">${price}</p>
+          
+          <div className='btnComprarDetail'>
+
+         {mostrarItemCount ?(
+                        <ItemCount stock={stock} initial={1} action={onAdd}/>
+                        ):( <Link to="/cart">
+                                <Button>Finalizar Compra</Button>
+                            </Link>
+                        )
+         }
+          </div>
+          </Grid>
+     
+    </>
   );
 };
 
-export default ItemDetail;
+export default ItemDetailCard;
