@@ -3,6 +3,7 @@ import ItemDetailCard from "../ItemDetail/ItemDetail";
 import {productList} from '../../data/data.js'
 import {useParams} from 'react-router-dom'
 
+
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState([])
   const {id} = useParams()
