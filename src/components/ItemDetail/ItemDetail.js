@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import ItemCount from '../ItemCount/ItemCount';
+
 import { Link } from 'react-router-dom';
 
 const ItemDetailCard = ({ name, thumbnail, price, id, talle, stock, desc }) => {
@@ -37,14 +37,10 @@ useEffect(()=>{
           <p className="precio">${price}</p>
           
           <div className='btnComprarDetail'>
-
-         {mostrarItemCount ?(
-                        <ItemCount stock={stock} initial={1} action={onAdd}/>
-                        ):( <Link to="/cart">
-                                <Button>Finalizar Compra</Button>
+              <Link to="/cart">
+             <Button>buy</Button>
                             </Link>
-                        )
-         }
+                        
           </div>
           </Grid>
      

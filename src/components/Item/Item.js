@@ -2,11 +2,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Button from '@mui/material/Button';
 import '../../styles/_Card.scss';
 import Container from '@mui/material/Container';
-import ItemCount from '../ItemCount/ItemCount';
-import { Link } from 'react-router-dom';
+import CartContext from '../../context/CartContext';
 
-const Card = ({ name, thumbnail, price, id, talle, stock }) => {
-  return (
+import { Link } from 'react-router-dom';
+import useContext from 'react';
+
+export default function Card  ({ data }) {
+   const {cartProducts, addProductToCart} = useContext(CartContext)
+   const { name, thumbnail, price, id, talle, stock } = data
+
+   const addToCart = (e) => {
+    e.stopPropagation()  
+    console.log("Productos agregados:", cartProducts) 
+    addProductToCart(data)
+
+   return (
+
+
     <>
       <CssBaseline />
       <Container  maxWidth="sm" className="itemlistContainer">
@@ -24,10 +36,9 @@ const Card = ({ name, thumbnail, price, id, talle, stock }) => {
           <h3>{name}</h3>
           <div className="Talle">Size: {talle} </div>
           <p className="precio">${price}</p>
-          <div>
-            <ItemCount stock={stock} />
-          </div>
+          
           <div className='detailsContainer'>
+          <Button onClick={addToCart} className="btn-custom">agregar al carrito</Button>
           <Link to={`/productos/${id}`}>
           <Button className ="btnDetalles"  size="small">
             DETAILS
@@ -42,4 +53,4 @@ const Card = ({ name, thumbnail, price, id, talle, stock }) => {
   );
 };
 
-export default Card;
+}

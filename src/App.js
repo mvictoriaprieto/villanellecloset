@@ -8,10 +8,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Productos from './pages/Productos';
 import Cart from './pages/Cart';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+//context
+import {CartProvider} from './context/CartContext';
 
 function App() {
   return (
     <>
+     <CartProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -24,6 +27,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
